@@ -4,9 +4,18 @@ class Assets {
 
   static const String assetsAvatar = 'assets/avatar.png';
   static const String assetsDownload = 'assets/download.svg';
+  static const String assetsIcon = 'assets/icon.ico';
   static const String assetsLeguan = 'assets/leguan.svg';
   static const String assetsLike = 'assets/like.svg';
   static const String assetsMusicList = 'assets/music_list.svg';
+  static const String assetsPageDownload = 'assets/page_download.png';
+  static const String assetsPageLeguan = 'assets/page_leguan.png';
+  static const String assetsPageLike = 'assets/page_like.png';
+  static const String assetsPageMusic = 'assets/page_music.png';
+  static const String assetsPageRadio = 'assets/page_radio.png';
+  static const String assetsPageRecent = 'assets/page_recent.png';
+  static const String assetsPageRecommend = 'assets/page_recommend.png';
+  static const String assetsPageVideo = 'assets/page_video.png';
   static const String assetsQqmusic = 'assets/qqmusic.png';
   static const String assetsRadio = 'assets/radio.svg';
   static const String assetsRecent = 'assets/recent.svg';

@@ -1,5 +1,12 @@
 import 'package:demo_qqmusic/generated/assets.dart';
+import 'package:demo_qqmusic/pages/page_download.dart';
+import 'package:demo_qqmusic/pages/page_like.dart';
+import 'package:demo_qqmusic/pages/page_music.dart';
+import 'package:demo_qqmusic/pages/page_radio.dart';
+import 'package:demo_qqmusic/pages/page_recent.dart';
 import 'package:demo_qqmusic/pages/page_recommend.dart';
+import 'package:demo_qqmusic/pages/page_video.dart';
+import 'package:demo_qqmusic/pages/page_yueguan.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -16,8 +23,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: /*Platform.isWindows ? '微软雅黑' : null*/ 'SourceHanSerifCN', scaffoldBackgroundColor: const Color((0xFFFAFAFA))),
-      home: const MyHomePage(),
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(color: Color(0xFFFAFAFA)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF28F68C)),
+        primaryColor: Colors.greenAccent,
+        fontFamily: /*Platform.isWindows ? '微软雅黑' : null*/ 'SourceHanSerifCN',
+        scaffoldBackgroundColor: const Color((0xFFFAFAFA)),
+        textSelectionTheme:
+            const TextSelectionThemeData(selectionColor: Colors.greenAccent),
+      ),
+      home: const SafeArea(child: MyHomePage()),
     );
   }
 }
@@ -30,6 +45,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Widget> pagesList = const [
+    RecommendPage(),
+    YueGuanPage(),
+    VideoPage(),
+    RadioPage(),
+    LikePage(),
+    RecentPage(),
+    DownloadPage(),
+    MusicPage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 8,
                   ),
                   const Text(
-                    'QQ音乐',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700, fontSize: 25),
+                    '阿伟音乐',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 25),
                   )
                 ],
               ),
@@ -82,11 +107,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget myMainPage() {
     return Expanded(
-    flex: 5,
-    child: Column(children: [
-      myAppBar(),
-      // const RecommendPage()
-    ],),
+      flex: 5,
+      child: Column(
+        children: [myAppBar(), Expanded(child: pagesList[selectedIndex])],
+      ),
     );
   }
 
@@ -124,8 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                   decoration: const BoxDecoration(
                       color: Color(0xFFE6E6E6),
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15))),
+                      borderRadius: BorderRadius.all(Radius.circular(15))),
                   width: 300,
                   height: 30,
                   child: const TextField(
@@ -139,8 +162,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           size: 20,
                           color: Color(0xFFA5A5A5),
                         ),
-                        contentPadding:
-                        EdgeInsets.symmetric(vertical: 12),
+                        // contentPadding:
+                        // EdgeInsets.symmetric(vertical: 12),
                         hintStyle: TextStyle(color: Color(0xFFA5A5A5))),
                   )),
               const SizedBox(
@@ -149,32 +172,36 @@ class _MyHomePageState extends State<MyHomePage> {
               SvgPicture.asset(
                 Assets.assetsShiqu,
                 height: 28,
-                colorFilter: const ColorFilter.mode(
-                    Color(0xFF00CC65), BlendMode.srcIn),
+                colorFilter:
+                    const ColorFilter.mode(Color(0xFF00CC65), BlendMode.srcIn),
               )
             ],
           ),
-          Row(
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                child: Image.asset(
-                  Assets.assetsAvatar,
-                  height: 20,
+          Container(
+            padding: const EdgeInsets.only(right: 20),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  child: Image.asset(
+                    Assets.assetsAvatar,
+                    height: 24,
+                  ),
                 ),
-              ),
-              const Text(
-                '五零二',
-                style: TextStyle(fontSize: 12),
-              )
-            ],
+                const SizedBox(
+                  width: 4,
+                ),
+                const Text(
+                  '阿伟',
+                  style: TextStyle(fontSize: 13),
+                )
+              ],
+            ),
           )
         ],
       ),
     );
   }
-
-
 
   Widget sideIconWidget(List<Map> iconDatas) {
     return Column(
@@ -206,32 +233,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   borderRadius: const BorderRadius.all(Radius.circular(8))),
               margin: const EdgeInsets.only(left: 6, right: 6),
               padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-              child: GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      iconDatas[index]['iconList'][innerIndex]['icons'],
-                      width: 24,
-                      colorFilter: selectedIndex == index * 4 + innerIndex
-                          ? const ColorFilter.mode(
-                              Colors.black, BlendMode.srcIn)
-                          : const ColorFilter.mode(
-                              Colors.grey, BlendMode.srcIn),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      iconDatas[index]['iconList'][innerIndex]['title'],
-                      style: TextStyle(
-                          color: selectedIndex == index * 4 + innerIndex
-                              ? Colors.black
-                              : Colors.grey,
-                          fontSize: 16, fontWeight: selectedIndex == index * 4 + innerIndex ? FontWeight.w700 : FontWeight.normal),
-                    ),
-                  ],
-                ),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    iconDatas[index]['iconList'][innerIndex]['icons'],
+                    width: 24,
+                    colorFilter: selectedIndex == index * 4 + innerIndex
+                        ? const ColorFilter.mode(Colors.black, BlendMode.srcIn)
+                        : const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    iconDatas[index]['iconList'][innerIndex]['title'],
+                    style: TextStyle(
+                        color: selectedIndex == index * 4 + innerIndex
+                            ? Colors.black
+                            : Colors.grey,
+                        fontSize: 16,
+                        fontWeight: selectedIndex == index * 4 + innerIndex
+                            ? FontWeight.w700
+                            : FontWeight.normal),
+                  ),
+                ],
               ),
             ),
           );
