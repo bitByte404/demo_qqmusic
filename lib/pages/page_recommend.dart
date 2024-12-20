@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:demo_qqmusic/generated/assets.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,7 @@ class RecommendPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: _PageContent());
+    return const Scaffold(body: _PageContent());
   }
 }
 
@@ -25,7 +26,9 @@ class _PageContent extends StatelessWidget {
             'Hi 阿伟 今日为你推荐',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
           SizedBox(
             height: fullSize.height * 0.23,
             child: Row(
@@ -39,10 +42,17 @@ class _PageContent extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          'https://s2.loli.net/2024/12/19/jfQVOagwEr7JM2u.png',
+                        child: CachedNetworkImage(
                           height: 150,
+                          imageUrl:
+                              "https://s2.loli.net/2024/12/19/jfQVOagwEr7JM2u.png",
+                          // placeholder: (context, url) => const CircularProgressIndicator(),
+                          // errorWidget: (context, url, error) => const Icon(Icons.error),
                         ),
+                        // child: Image.network(
+                        //   'https://s2.loli.net/2024/12/19/jfQVOagwEr7JM2u.png',
+                        //   height: 150,
+                        // ),
                       ),
                       const Text(
                         '零几年听的情歌-GG啵',
@@ -67,12 +77,11 @@ class _PageContent extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            'https://s2.loli.net/2024/12/19/U6xjYHT9tD2gVWh.png',
-                            height: 150,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(8),
+                            child: CachedNetworkImage(
+                                height: 150,
+                                imageUrl:
+                                    'https://s2.loli.net/2024/12/19/U6xjYHT9tD2gVWh.png')),
                         const Text(
                           '夏恋注意報-SHISHA',
                           style:
@@ -96,8 +105,8 @@ class _PageContent extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            'https://s2.loli.net/2024/12/19/Y7E6OpWXJ2SNfAK.png',
+                          child: CachedNetworkImage(
+                            imageUrl:  'https://s2.loli.net/2024/12/19/Y7E6OpWXJ2SNfAK.png',
                             height: 150,
                           ),
                         ),
@@ -124,8 +133,8 @@ class _PageContent extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            'https://s2.loli.net/2024/12/19/zEhm7M23ZXw9QfI.png',
+                          child: CachedNetworkImage(
+                            imageUrl:  'https://s2.loli.net/2024/12/19/zEhm7M23ZXw9QfI.png',
                             height: 150,
                           ),
                         ),
@@ -148,8 +157,8 @@ class _PageContent extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            'https://s2.loli.net/2024/12/19/L25z63ahVUxcTwb.png',
+                          child: CachedNetworkImage(
+                            imageUrl:  'https://s2.loli.net/2024/12/19/L25z63ahVUxcTwb.png',
                             height: 150,
                           ),
                         ),
@@ -168,18 +177,20 @@ class _PageContent extends StatelessWidget {
               ],
             ),
           ),
-
-
           ...List.generate(4, (index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text(
                   '听这些会更开心哦',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 SizedBox(
                   height: fullSize.height * 0.23,
                   child: Row(
@@ -193,15 +204,15 @@ class _PageContent extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://s2.loli.net/2024/12/19/zEhm7M23ZXw9QfI.png',
+                                child: CachedNetworkImage(
+                                  imageUrl:  'https://s2.loli.net/2024/12/19/zEhm7M23ZXw9QfI.png',
                                   height: 150,
                                 ),
                               ),
                               const Text(
                                 '杜比专区',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                               // const Text('猜你喜欢', style: TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),),
                             ],
@@ -217,20 +228,20 @@ class _PageContent extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://s2.loli.net/2024/12/19/U6xjYHT9tD2gVWh.png',
+                                child: CachedNetworkImage(
+                                 imageUrl:  'https://s2.loli.net/2024/12/19/U6xjYHT9tD2gVWh.png',
                                   height: 150,
                                 ),
                               ),
                               const Text(
                                 '夏恋注意報-SHISHA',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                               const Text(
                                 '百万收藏',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                             ],
                           )),
@@ -245,20 +256,17 @@ class _PageContent extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://s2.loli.net/2024/12/19/Y7E6OpWXJ2SNfAK.png',
-                                  height: 150,
-                                ),
+                                child: CachedNetworkImage(imageUrl: 'https://s2.loli.net/2024/12/19/Y7E6OpWXJ2SNfAK.png', height: 150,)
                               ),
                               const Text(
                                 'The Very First Nigh',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                               const Text(
                                 '猜你喜欢',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                             ],
                           )),
@@ -273,15 +281,12 @@ class _PageContent extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://s2.loli.net/2024/12/19/zEhm7M23ZXw9QfI.png',
-                                  height: 150,
-                                ),
+                                child: CachedNetworkImage(imageUrl: 'https://s2.loli.net/2024/12/19/zEhm7M23ZXw9QfI.png', height: 150,)
                               ),
                               const Text(
                                 '杜比专区',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                               // const Text('猜你喜欢', style: TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),),
                             ],
@@ -289,7 +294,6 @@ class _PageContent extends StatelessWidget {
                       SizedBox(
                         width: fullSize.width * 0.02,
                       ),
-
                       Flexible(
                           flex: 1,
                           child: Column(
@@ -298,24 +302,20 @@ class _PageContent extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://s2.loli.net/2024/12/19/U6xjYHT9tD2gVWh.png',
-                                  height: 150,
-                                ),
+                                child: CachedNetworkImage(imageUrl: 'https://s2.loli.net/2024/12/19/U6xjYHT9tD2gVWh.png', height: 150,)
                               ),
                               const Text(
                                 '夏恋注意報-SHISHA',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                               const Text(
                                 '百万收藏',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                             ],
                           )),
-
                       SizedBox(
                         width: fullSize.width * 0.02,
                       ),
@@ -327,20 +327,21 @@ class _PageContent extends StatelessWidget {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                  'https://s2.loli.net/2024/12/19/L25z63ahVUxcTwb.png',
-                                  height: 150,
-                                ),
+                                child: CachedNetworkImage(imageUrl: 'https://s2.loli.net/2024/12/19/L25z63ahVUxcTwb.png', height: 150,),
+                                // child: Image.network(
+                                //   'https://s2.loli.net/2024/12/19/L25z63ahVUxcTwb.png',
+                                //   height: 150,
+                                // ),
                               ),
                               const Text(
                                 '星<の(星尘之曲)',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                               const Text(
                                 '新歌推荐',
-                                style:
-                                TextStyle(fontSize: 14, color: Color(0xFF4B4B4B)),
+                                style: TextStyle(
+                                    fontSize: 14, color: Color(0xFF4B4B4B)),
                               ),
                             ],
                           )),
